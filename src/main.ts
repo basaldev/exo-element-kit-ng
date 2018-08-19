@@ -14,8 +14,9 @@ class ExoExperiment extends HTMLElement {
   }
 
   connectedCallback() {
-    platformBrowserDynamic().bootstrapModule(AppModule)
-    .catch(err => console.log(err));
+    platformBrowserDynamic()
+      .bootstrapModule(AppModule)
+      .catch(err => console.log(err));
   }
 
   static get observedAttributes() {

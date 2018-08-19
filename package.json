@@ -7,7 +7,11 @@
     "build": "ng build --prod --output-hashing none --extract-css false && node ./scripts/build-elements.js",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "lint-staged": "lint-staged",
+    "lint-pass": "echo '\\033[4;32m♡' Format complete ♡' \\033[0m'",
+    "change-log": "auto-changelog --template ./node/templates/change-log.hbs",
+    "format": "prettier --single-quote --print-width 120 es5 --write 'src/**/*.{ts,tsx}'"
   },
   "private": true,
   "dependencies": {
@@ -45,6 +49,20 @@
     "protractor": "~5.3.0",
     "ts-node": "~5.0.1",
     "tslint": "~5.9.1",
-    "typescript": "~2.7.2"
-  }
+    "typescript": "~2.7.2",
+    "lint-staged": "^7.0.4",
+    "auto-changelog": "^1.8.0",
+    "pre-commit": "^1.2.2",
+    "prettier": "1.10.2"
+  },
+  "lint-staged": {
+    "components/**/**/*.{ts,tsx,js}": [
+      "prettier --single-quote --print-width 120 --trailing-comma es5 --write",
+      "git add"
+    ]
+  },
+  "pre-commit": [
+    "lint-staged",
+    "lint-pass"
+  ]
 }
