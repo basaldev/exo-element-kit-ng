@@ -15,7 +15,7 @@ class ExoExperiment extends HTMLElement {
 
   connectedCallback() {
     platformBrowserDynamic()
-      .bootstrapModule(AppModule)
+      .bootstrapModule(AppModule, {ngZone: 'noop' })
       .catch(err => console.log(err));
   }
 
